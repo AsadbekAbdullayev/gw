@@ -3,13 +3,27 @@ import styled from 'styled-components';
 export const Wrapper = styled.div`
   width: 100%;
   display: flex;
-  background-color: #8bc34a;
   justify-content: center;
-  margin: 20px 0;
+  margin: 0 0 20px 0;
+`;
+Wrapper.Flex = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 1000px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  .wizard {
+    :hover {
+      color: red;
+    }
+  }
 `;
 Wrapper.Wrap = styled.div`
-  width: 1000px;
-  height: 45px;
+  width: fit-content;
+  height: 50px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -22,4 +36,7 @@ Wrapper.Wrap = styled.div`
   @media (max-width: 500px) {
     width: 300px;
   }
+  font-family: helvetica;
+  font-size: 50px;
+  color: #1e1e1e;
 `;

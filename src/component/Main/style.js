@@ -19,5 +19,4 @@ Container.Flex = styled.div`
   @media (max-width: 500px) {
     width: 300px;
   }
-  border: 1px solid red;
 `;
