@@ -8,6 +8,7 @@ export const Wrapper = styled.div`
   margin: 0 0 20px 0;
   position: sticky;
   top: 0px;
+  z-index: 99;
 `;
 Wrapper.Wrap = styled.div`
   width: 1000px;
@@ -25,4 +26,9 @@ Wrapper.Wrap = styled.div`
   @media (max-width: 500px) {
     width: 300px;
   }
+`;
+Wrapper.Image = styled.img`
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
 `;

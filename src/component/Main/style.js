@@ -5,6 +5,7 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  background-color: ${({ color }) => (color ? '#313843' : '#fff')};
 `;
 Container.Flex = styled.div`
   display: flex;

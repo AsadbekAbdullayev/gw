@@ -14,15 +14,15 @@ export const Container = styled.div`
   }
 `;
 Container.Menu = styled.div`
-  padding: 5px 10px;
-  width: 220px;
+  padding: 5px 20px;
+  width: 200px;
   display: flex;
   align-items: center;
   border-radius: 6px;
   height: 28px;
   font-size: 16px;
-  font-size: 16px;
+  font-weight: 600;
   color: ${({ active }) => (active ? '#fff27c' : '#fff')};
-  background-color: #86b64e;
+  background-color: ${({ darkMode }) => (darkMode ? '#39424f' : '#86b64e')};
   cursor: pointer;
 `;

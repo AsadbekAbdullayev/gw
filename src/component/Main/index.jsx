@@ -5,9 +5,11 @@ import Sidebar from '../Sidebar';
 import Navbar from '../Navbar';
 import FirstNavbar from '../FirstNavbar';
 import SecondNavbar from '../SecondNavbar';
+import { useStyledContex } from '../../context/useContext';
 const Main1 = () => {
+  const [{ darkMode }] = useStyledContex();
   return (
-    <Container>
+    <Container color={darkMode ? 'true' : undefined}>
       <FirstNavbar />
       <SecondNavbar />
       <Navbar />

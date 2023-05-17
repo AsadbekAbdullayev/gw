@@ -6,6 +6,7 @@ export const Wrapper = styled.div`
   background-color: #8bc34a;
   justify-content: center;
   margin: 20px 0;
+  background-color: ${({ darkMode }) => (darkMode ? '#39424f' : '#86b64e')};
 `;
 Wrapper.Wrap = styled.div`
   width: 1000px;
@@ -22,4 +23,12 @@ Wrapper.Wrap = styled.div`
   @media (max-width: 500px) {
     width: 300px;
   }
+`;
+Wrapper.Flex = styled.div`
+  display: flex;
+  align-items: center;
+  width: fit-content;
+  gap: 5px;
+  color: #fff;
+  font-size: 16px;
 `;
