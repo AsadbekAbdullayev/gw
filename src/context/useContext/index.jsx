@@ -1,3 +1,3 @@
 import { useStyledContex } from '../StyleContext';
-
-export { useStyledContex };
+import { useUserContex } from '../UserContext';
+export { useStyledContex, useUserContex };

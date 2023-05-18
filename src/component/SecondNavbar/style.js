@@ -4,7 +4,7 @@ export const Wrapper = styled.div`
   width: 100%;
   display: flex;
   justify-content: center;
-  margin: 0 0 20px 0;
+  margin: 0 0 10px 0;
   @media (max-width: 1000px) {
     width: 800px;
   }

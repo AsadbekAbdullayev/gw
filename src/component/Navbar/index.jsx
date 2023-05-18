@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import { Wrapper } from './style';
 import { useGetwidth } from '../../hooks';
 import HideSidebar from '../HideSidebar';
-import { IconCloseList } from '../../styledIcons';
+import { IconCloseList } from '../styledIcons';
 import { useStyledContex } from '../../context/useContext';
-import { IconLocation } from '../../styledIcons';
+import { IconLocation } from '../styledIcons';
 import { useLocation } from 'react-router-dom';
 const Navbar = () => {
   const { width } = useGetwidth();

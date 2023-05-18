@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
-import { ReactComponent as closeList } from '../assets/icons/closeList.svg';
-import { ReactComponent as location } from '../assets/icons/location.svg';
+import { ReactComponent as closeList } from '../../assets/icons/closeList.svg';
+import { ReactComponent as location } from '../../assets/icons/location.svg';
 
 const IconCloseList = styled(closeList)`
   width: ${({ width }) => (width ? width : '20px')};

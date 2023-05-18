@@ -1,3 +1,3 @@
 import CloseButton from './closeButton';
-
-export { CloseButton };
+import { CustomLoading } from './customLoading';
+export { CloseButton, CustomLoading };
