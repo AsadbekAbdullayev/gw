@@ -14,18 +14,19 @@ const Sidebar = () => {
   };
   return (
     <Container>
-      {sidebarData?.map(({ name, id, path }) => {
-        return (
-          <Container.Menu
-            key={id}
-            onClick={() => Navigation(path)}
-            active={path === current ? 'true' : undefined}
-            darkMode={darkMode === true ? 'true' : undefined}
-          >
-            {name}
-          </Container.Menu>
-        );
-      })}
+      {sidebarData?.map(
+        ({ name, id, path, hidden }) =>
+          !hidden && (
+            <Container.Menu
+              key={id}
+              onClick={() => Navigation(path)}
+              active={path === current ? 'true' : undefined}
+              darkMode={darkMode === true ? 'true' : undefined}
+            >
+              {name}
+            </Container.Menu>
+          )
+      )}
     </Container>
   );
 };

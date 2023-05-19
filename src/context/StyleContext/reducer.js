@@ -1,5 +1,5 @@
 export const initialState = {
-  darkMode: false,
+  darkMode: true,
 };
 
 export const reducer = (state, action) => {

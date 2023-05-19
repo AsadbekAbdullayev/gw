@@ -1,4 +1,4 @@
-import Main1 from '../component/Main1';
+import Profile from '../component/Profile';
 import Main2 from '../component/Main2';
 import Main3 from '../component/Main3';
 import News from '../component/News';
@@ -7,9 +7,10 @@ import TopGames from '../component/Top Games';
 export const sidebarData = [
   {
     id: 1,
-    name: 'Main1',
-    path: '/main1',
-    component: <Main1 />,
+    name: 'Profile',
+    path: '/profile',
+    component: <Profile />,
+    hidden: true,
   },
   {
     id: 2,

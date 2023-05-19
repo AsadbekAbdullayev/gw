@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { Wrapper, AntModal, AntInput, AntDatePicker } from './style';
-import { useStyledContex } from '../../context/useContext';
+import { useStyledContex, useUserContex } from '../../context/useContext';
 
 import { message } from 'antd';
 import app from '../../firebase';
 import { useGetwidth } from '../../hooks';
 import { CustomLoading } from '../extra-component';
-import { useUserContex } from '../../context/useContext';
 import { Modal } from 'antd';
 import moment from 'moment';
 import {
@@ -15,7 +14,8 @@ import {
   uploadBytesResumable,
   getDownloadURL,
 } from 'firebase/storage';
-// import app from '../../firebase';
+import { useNavigate } from 'react-router-dom';
+
 import {
   collection,
   query,
@@ -26,6 +26,9 @@ import {
 } from 'firebase/firestore';
 const FirstNavbar = () => {
   const [{ darkMode }, dispatch] = useStyledContex();
+  const [data, dispatchUser] = useUserContex();
+  const navigate = useNavigate();
+
   const db = getFirestore(app);
   const { width } = useGetwidth();
   const [open, setOpen] = useState(false);
@@ -34,9 +37,6 @@ const FirstNavbar = () => {
   const [widht1, setWidth1] = useState('');
   useEffect(() => setWidth1(width), [width]);
   const [messageApi, contextHolder] = message.useMessage();
-  const [data, dispatchUser] = useUserContex();
-  console.log(data?.currentUser, 'currentUser');
-
   const { confirm } = Modal;
   function getRandomInt(max) {
     return Math.floor(Math.random() * max);
@@ -49,9 +49,10 @@ const FirstNavbar = () => {
     avatar: '',
     birthDay: '',
     createDate: today.toISOString(),
-    id: '',
+    id: getRandomInt(10000),
     nickName: '',
     position: 'user',
+    games: [],
   });
   const { email, password, nickName, avatar } = state;
 
@@ -65,21 +66,39 @@ const FirstNavbar = () => {
       avatar: '',
       birthDay: '',
       createDate: '',
-      id: getRandomInt(10000),
+      id: 0,
       nickName: '',
       position: 'user',
+      games: [],
     });
   };
-  // const [userList, setUserList] = useState([]);
   let list = [];
+
+  async function getAllLogout() {
+    const q = query(collection(db, 'users'));
+    const querySnapshot = await getDocs(q);
+    querySnapshot.forEach((doc) => {
+      list.push(doc.data());
+    });
+    messageApi.open({
+      type: 'succes',
+      content: 'Logout',
+    });
+    dispatchUser({ type: 'setUserList', payload: [...list] });
+    handleCancel();
+  }
+
   async function getAllData() {
     const q = query(collection(db, 'users'));
     const querySnapshot = await getDocs(q);
     querySnapshot.forEach((doc) => {
       list.push(doc.data());
     });
-    // setUserList([...list]);
     dispatchUser({ type: 'setCurrentUser', payload: state });
+    messageApi.open({
+      type: 'succes',
+      content: 'Succesfully sigup',
+    });
     setLoading(false);
     handleCancel();
   }
@@ -100,7 +119,24 @@ const FirstNavbar = () => {
         content: 'Please fill in the blanks ',
       });
     } else {
-      setLoading(true);
+      let signUser = data?.userList?.filter(
+        ({ email, password }) =>
+          email === state?.email && password === state?.password
+      );
+      if (signUser?.length) {
+        messageApi.open({
+          type: 'succes',
+          content: 'Succesfully signing',
+        });
+        dispatchUser({ type: 'setCurrentUser', payload: signUser[0] });
+
+        handleCancel();
+      } else {
+        messageApi.open({
+          type: 'warning',
+          content: 'Email or password wrong !',
+        });
+      }
     }
   };
 
@@ -113,10 +149,10 @@ const FirstNavbar = () => {
   };
   const showConfirm = () => {
     confirm({
-      title: 'Do you Want to delete these items?',
-      content: 'Some descriptions',
+      title: 'Do you want to logout?',
       onOk() {
-        dispatchUser({ type: 'setUser' });
+        getAllLogout();
+        dispatchUser({ type: 'setCurrentUser', payload: {} });
       },
       onCancel() {
         console.log('Cancel');
@@ -157,6 +193,15 @@ const FirstNavbar = () => {
   const onChangeDate = (date, dateString) => {
     setState({ ...state, birthDay: dateString });
   };
+
+  const goProfile = () => {
+    if (data?.currentUser?.nickName) {
+      navigate('/profile');
+    } else {
+      setOpen(true);
+    }
+  };
+
   return (
     <Wrapper>
       {contextHolder}
@@ -167,6 +212,7 @@ const FirstNavbar = () => {
         darkMode={darkMode}
         okText='Sign Up'
         closable={false}
+        title='Sign Up'
       >
         {loading ? (
           <div
@@ -241,6 +287,7 @@ const FirstNavbar = () => {
         darkMode={darkMode}
         okText='Sign In'
         closable={false}
+        title='Sign In'
       >
         {loading ? (
           <div
@@ -275,11 +322,12 @@ const FirstNavbar = () => {
           </Wrapper.Column>
         )}
       </AntModal>
+
       <Wrapper.Wrap>
         <Wrapper.Flex style={{ gap: '20px' }}>
-          <Wrapper.Link>Home</Wrapper.Link>
-          <Wrapper.Link>News</Wrapper.Link>
-          <Wrapper.Link>Profile</Wrapper.Link>
+          <Wrapper.Link onClick={() => navigate('/home')}>Home</Wrapper.Link>
+          <Wrapper.Link onClick={() => navigate('/news')}>News</Wrapper.Link>
+          <Wrapper.Link onClick={goProfile}>Profile</Wrapper.Link>
         </Wrapper.Flex>
         <Wrapper.Flex style={{ gap: '20px' }}>
           <Wrapper.Image
