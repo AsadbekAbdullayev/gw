@@ -5,7 +5,7 @@ import { sidebarData } from '../../utils/sidebar';
 import { useStyledContex } from '../../context/useContext';
 
 const Sidebar = () => {
-  const [{ darkMode }] = useStyledContex();
+  const [{ darkmode }] = useStyledContex();
   const navigate = useNavigate();
   const [current, seCurrnet] = useState('');
   const Navigation = (path) => {
@@ -21,7 +21,7 @@ const Sidebar = () => {
               key={id}
               onClick={() => Navigation(path)}
               active={path === current ? 'true' : undefined}
-              darkMode={darkMode === true ? 'true' : undefined}
+              darkmode={darkmode === true ? 'true' : undefined}
             >
               {name}
             </Container.Menu>

@@ -3,8 +3,8 @@ import myImage from './user.png';
 import { Modal, Input, DatePicker } from 'antd';
 export const AntModal = styled(Modal)`
   .ant-modal-content {
-    /* background-color: ${({ darkMode }) =>
-      darkMode && '#39424f !important'}; */
+    /* background-color: ${({ darkmode }) =>
+      darkmode && '#39424f !important'}; */
   }
 `;
 

@@ -1,16 +1,16 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Wrapper } from './style';
 import { useGetwidth } from '../../hooks';
 import HideSidebar from '../HideSidebar';
 import { IconCloseList } from '../styledIcons';
 import { useStyledContex } from '../../context/useContext';
-import { IconLocation } from '../styledIcons';
-import { useLocation } from 'react-router-dom';
+import { GenericInput } from '../extra-component';
 const Navbar = () => {
   const { width } = useGetwidth();
   const [open, setOpen] = useState(false);
-  const [{ darkMode }] = useStyledContex();
-  const { pathname } = useLocation();
+  const [widthSize, setWidthSize] = useState(width);
+  const [{ darkmode }] = useStyledContex();
+  useEffect(() => setWidthSize(width), [width]);
   // const [item, setItem] = useState();
   // console.log(item, 'ww');
   // useEffect(() => {
@@ -30,20 +30,20 @@ const Navbar = () => {
   //     'http://maps.googleapis.com/maps/api/geocode/json?latlng=41.3385653,69.2058815&sensor=false&key='
   //   ).then((data) => console.log(data, 'data'));
   // }, []);
+
   return (
-    <Wrapper darkMode={darkMode ? 'true' : undefined}>
+    <Wrapper darkmode={darkmode ? 'true' : undefined}>
       <Wrapper.Wrap>
-        <Wrapper.Flex>
-          <IconLocation color='#fff' width='25px' height='25px' />
-          {pathname.slice(1)}
+        <Wrapper.Flex style={{ width: '100%' }}>
+          <GenericInput />
         </Wrapper.Flex>
-        {width < 800 && (
+        {widthSize < 800 && (
           <IconCloseList
             onClick={() => setOpen(!open)}
             onFocus={() => console.log('hey')}
           />
         )}
-        {width < 800 && <HideSidebar open={open} />}
+        {widthSize < 800 && <HideSidebar open={open} />}
       </Wrapper.Wrap>
     </Wrapper>
   );

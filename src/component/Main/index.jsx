@@ -11,7 +11,7 @@ import app from '../../firebase';
 
 const Main1 = () => {
   const [{ loadingPage, userList }, dispatchUser] = useUserContex();
-  const [{ darkMode }] = useStyledContex();
+  const [{ darkmode }] = useStyledContex();
   const db = getFirestore(app);
   let list = [];
   async function getAllDataUser() {
@@ -33,11 +33,11 @@ const Main1 = () => {
   }, []);
 
   return (
-    <Container color={darkMode ? 'true' : undefined}>
+    <Container color={darkmode ? 'true' : undefined}>
       {loadingPage ? (
         <h3>Loading data ..</h3>
       ) : (
-        <Container color={darkMode ? 'true' : undefined}>
+        <Container color={darkmode ? 'true' : undefined}>
           <FirstNavbar />
           <SecondNavbar />
           <Navbar />

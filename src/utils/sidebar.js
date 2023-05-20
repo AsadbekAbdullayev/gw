@@ -1,8 +1,6 @@
 import Profile from '../component/Profile';
-import Main2 from '../component/Main2';
-import Main3 from '../component/Main3';
+import GameFor from '../component/GameFor';
 import News from '../component/News';
-import TopGames from '../component/Top Games';
 
 export const sidebarData = [
   {
@@ -14,26 +12,45 @@ export const sidebarData = [
   },
   {
     id: 2,
-    name: 'Main2',
-    path: '/main2',
-    component: <Main2 />,
-  },
-  {
-    id: 3,
-    name: 'Main3',
-    path: '/main3',
-    component: <Main3 />,
+    name: 'Best of the year',
+    path: '/bestof',
+    component: <GameFor />,
   },
   {
     id: 4,
     name: 'News',
     path: '/news',
     component: <News />,
+    hidden: true,
   },
   {
     id: 5,
     name: 'Top Games',
     path: '/topgames',
-    component: <TopGames />,
+    component: <GameFor />,
+  },
+  {
+    id: 6,
+    name: 'Platforms',
+    path: '/platforms',
+    component: <GameFor />,
+  },
+  {
+    id: 7,
+    name: 'Genres',
+    path: '/genres',
+    component: <GameFor />,
+  },
+  {
+    id: 8,
+    name: 'Creators',
+    path: '/creators',
+    component: <GameFor />,
+  },
+  {
+    id: 9,
+    name: 'Developers',
+    path: '/developers',
+    component: <GameFor />,
   },
 ];

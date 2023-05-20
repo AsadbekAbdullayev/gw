@@ -1,11 +1,11 @@
 export const initialState = {
-  darkMode: true,
+  darkmode: true,
 };
 
 export const reducer = (state, action) => {
   switch (action.type) {
-    case 'setDarkMode':
-      return { ...state, darkMode: action.payload };
+    case 'setDarkmode':
+      return { ...state, darkmode: action.payload };
     default:
       return state;
   }

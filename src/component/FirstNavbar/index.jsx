@@ -1,13 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { Wrapper, AntModal, AntInput, AntDatePicker } from './style';
+import { Wrapper, AntModal, AntInput } from './style';
 import { useStyledContex, useUserContex } from '../../context/useContext';
-
 import { message } from 'antd';
 import app from '../../firebase';
 import { useGetwidth } from '../../hooks';
 import { CustomLoading } from '../extra-component';
 import { Modal } from 'antd';
-import moment from 'moment';
 import {
   getStorage,
   ref,
@@ -25,7 +23,7 @@ import {
   getFirestore,
 } from 'firebase/firestore';
 const FirstNavbar = () => {
-  const [{ darkMode }, dispatch] = useStyledContex();
+  const [{ darkmode }, dispatch] = useStyledContex();
   const [data, dispatchUser] = useUserContex();
   const navigate = useNavigate();
 
@@ -43,13 +41,14 @@ const FirstNavbar = () => {
   }
   const timeElapsed = Date.now();
   const today = new Date(timeElapsed);
+  let idGenerate = getRandomInt(10000);
   const [state, setState] = useState({
     email: '',
     password: '',
     avatar: '',
     birthDay: '',
     createDate: today.toISOString(),
-    id: getRandomInt(10000),
+    id: idGenerate,
     nickName: '',
     position: 'user',
     games: [],
@@ -105,7 +104,7 @@ const FirstNavbar = () => {
 
   async function handleOk() {
     setLoading(true);
-    await setDoc(doc(db, 'users', `${getRandomInt(10000)}`), {
+    await setDoc(doc(db, 'users', `${state?.id}`), {
       ...state,
     })
       .then(() => getAllData())
@@ -119,10 +118,12 @@ const FirstNavbar = () => {
         content: 'Please fill in the blanks ',
       });
     } else {
-      let signUser = data?.userList?.filter(
-        ({ email, password }) =>
-          email === state?.email && password === state?.password
-      );
+      let signUser =
+        data?.userList &&
+        data?.userList?.filter(
+          ({ email, password }) =>
+            email === state?.email && password === state?.password
+        );
       if (signUser?.length) {
         messageApi.open({
           type: 'succes',
@@ -152,6 +153,8 @@ const FirstNavbar = () => {
       title: 'Do you want to logout?',
       onOk() {
         getAllLogout();
+        navigate('/home');
+
         dispatchUser({ type: 'setCurrentUser', payload: {} });
       },
       onCancel() {
@@ -190,15 +193,13 @@ const FirstNavbar = () => {
       }
     );
   };
-  const onChangeDate = (date, dateString) => {
-    setState({ ...state, birthDay: dateString });
-  };
 
   const goProfile = () => {
     if (data?.currentUser?.nickName) {
       navigate('/profile');
     } else {
-      setOpen(true);
+      // setOpen(true);
+      navigate('/profile');
     }
   };
 
@@ -209,7 +210,7 @@ const FirstNavbar = () => {
         open={open}
         onOk={handleOk}
         onCancel={handleCancel}
-        darkMode={darkMode}
+        darkmode={darkmode}
         okText='Sign Up'
         closable={false}
         title='Sign Up'
@@ -270,13 +271,13 @@ const FirstNavbar = () => {
                 />
               )}
             </Wrapper.Flex>
-            <Wrapper.Flex style={{ width: '100%' }}>
+            {/* <Wrapper.Flex style={{ width: '100%' }}>
               <AntDatePicker
                 onChange={onChangeDate}
                 value={state?.birthDay ? moment(state?.birthDay) : null}
               />
               Birth date
-            </Wrapper.Flex>
+            </Wrapper.Flex> */}
           </Wrapper.Column>
         )}
       </AntModal>
@@ -284,7 +285,7 @@ const FirstNavbar = () => {
         open={open1}
         onOk={handleOk2}
         onCancel={handleCancel}
-        darkMode={darkMode}
+        darkmode={darkmode}
         okText='Sign In'
         closable={false}
         title='Sign In'
@@ -332,10 +333,10 @@ const FirstNavbar = () => {
         <Wrapper.Flex style={{ gap: '20px' }}>
           <Wrapper.Image
             onClick={() =>
-              dispatch({ type: 'setDarkMode', payload: !darkMode })
+              dispatch({ type: 'setDarkmode', payload: !darkmode })
             }
             src={
-              !darkMode
+              !darkmode
                 ? 'https://itorrents-igruha.org/templates/gamestorgreen/images/sunny.png'
                 : 'https://itorrents-igruha.org/templates/gamestorgreen/images/moon.png'
             }
