@@ -6,7 +6,6 @@ const useGetwidth = () => {
   window.onresize = window.onload = function () {
     setWidth(this.innerWidth);
   };
-
   return { width };
 };
 

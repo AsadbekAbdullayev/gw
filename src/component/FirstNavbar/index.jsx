@@ -3,7 +3,6 @@ import { Wrapper, AntModal, AntInput } from './style';
 import { useStyledContex, useUserContex } from '../../context/useContext';
 import { message } from 'antd';
 import app from '../../firebase';
-import { useGetwidth } from '../../hooks';
 import { CustomLoading } from '../extra-component';
 import { Modal } from 'antd';
 import {
@@ -23,17 +22,15 @@ import {
   getFirestore,
 } from 'firebase/firestore';
 const FirstNavbar = () => {
-  const [{ darkmode }, dispatch] = useStyledContex();
+  const [{ darkmode, width }, dispatch] = useStyledContex();
   const [data, dispatchUser] = useUserContex();
   const navigate = useNavigate();
 
   const db = getFirestore(app);
-  const { width } = useGetwidth();
-  const [open, setOpen] = useState(false);
-  const [open1, setOpen1] = useState(false);
   const [loading, setLoading] = useState(false);
   const [widht1, setWidth1] = useState('');
   useEffect(() => setWidth1(width), [width]);
+
   const [messageApi, contextHolder] = message.useMessage();
   const { confirm } = Modal;
   function getRandomInt(max) {
@@ -56,8 +53,8 @@ const FirstNavbar = () => {
   const { email, password, nickName, avatar } = state;
 
   const handleCancel = () => {
-    setOpen(false);
-    setOpen1(false);
+    dispatchUser({ type: 'setSignUseropen' });
+    dispatchUser({ type: 'setLoginUseropen' });
     setState({
       ...state,
       email: '',
@@ -86,7 +83,10 @@ const FirstNavbar = () => {
     dispatchUser({ type: 'setUserList', payload: [...list] });
     handleCancel();
   }
-
+  useEffect(
+    () => dispatchUser({ type: 'setLogoutFunction', payload: getAllLogout }),
+    []
+  );
   async function getAllData() {
     const q = query(collection(db, 'users'));
     const querySnapshot = await getDocs(q);
@@ -101,14 +101,37 @@ const FirstNavbar = () => {
     setLoading(false);
     handleCancel();
   }
+  // email: '',
+  // password: '',
+  // avatar: '',
+  // birthDay: '',
+  // createDate: today.toISOString(),
+  // id: idGenerate,
+  // nickName: '',
+  // position: 'user',
+  // games: [],
 
   async function handleOk() {
-    setLoading(true);
-    await setDoc(doc(db, 'users', `${state?.id}`), {
-      ...state,
-    })
-      .then(() => getAllData())
-      .catch((err) => console.log(err, 'err'));
+    if (state?.email && state?.password && state?.avatar && state?.nickName) {
+      if (data?.userList.filter((v) => v?.email === state?.email)?.length) {
+        messageApi.open({
+          type: 'warning',
+          content: 'This email already exists',
+        });
+      } else {
+        setLoading(true);
+        await setDoc(doc(db, 'users', `${state?.id}`), {
+          ...state,
+        })
+          .then(() => getAllData())
+          .catch((err) => console.log(err, 'err'));
+      }
+    } else {
+      messageApi.open({
+        type: 'warning',
+        content: 'Please fill in the blanks ',
+      });
+    }
   }
 
   const handleOk2 = () => {
@@ -198,8 +221,7 @@ const FirstNavbar = () => {
     if (data?.currentUser?.nickName) {
       navigate('/profile');
     } else {
-      // setOpen(true);
-      navigate('/profile');
+      dispatchUser({ type: 'setLoginUseropen', payload: true });
     }
   };
 
@@ -207,7 +229,7 @@ const FirstNavbar = () => {
     <Wrapper>
       {contextHolder}
       <AntModal
-        open={open}
+        open={data?.loginUseropen}
         onOk={handleOk}
         onCancel={handleCancel}
         darkmode={darkmode}
@@ -271,18 +293,11 @@ const FirstNavbar = () => {
                 />
               )}
             </Wrapper.Flex>
-            {/* <Wrapper.Flex style={{ width: '100%' }}>
-              <AntDatePicker
-                onChange={onChangeDate}
-                value={state?.birthDay ? moment(state?.birthDay) : null}
-              />
-              Birth date
-            </Wrapper.Flex> */}
           </Wrapper.Column>
         )}
       </AntModal>
       <AntModal
-        open={open1}
+        open={data?.signUseropen}
         onOk={handleOk2}
         onCancel={handleCancel}
         darkmode={darkmode}
@@ -345,10 +360,18 @@ const FirstNavbar = () => {
             <Wrapper.Column style={{ gap: '0px' }}>
               {!data?.currentUser?.nickName ? (
                 <>
-                  <Wrapper.Link onClick={() => setOpen(true)}>
+                  <Wrapper.Link
+                    onClick={() =>
+                      dispatchUser({ type: 'setLoginUseropen', payload: true })
+                    }
+                  >
                     SignUp
                   </Wrapper.Link>
-                  <Wrapper.Link onClick={() => setOpen1(true)}>
+                  <Wrapper.Link
+                    onClick={() =>
+                      dispatchUser({ type: 'setSignUseropen', payload: true })
+                    }
+                  >
                     SignIn
                   </Wrapper.Link>
                 </>

@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import myImage from './user.png';
+import myImage from '../../assets/img/user.png';
 import { Modal, Input, DatePicker } from 'antd';
 export const AntModal = styled(Modal)`
   .ant-modal-content {
@@ -18,9 +18,9 @@ export const Wrapper = styled.div`
   background-color: #1e1e1e;
   justify-content: center;
   margin: 0 0 20px 0;
-  position: sticky;
-  top: 0px;
-  z-index: 99;
+  /* position: sticky; */
+  /* top: 0px; */
+  /* z-index: 99; */
 `;
 Wrapper.Wrap = styled.div`
   width: 1000px;

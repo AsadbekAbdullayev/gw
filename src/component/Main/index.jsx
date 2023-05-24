@@ -11,7 +11,8 @@ import app from '../../firebase';
 
 const Main1 = () => {
   const [{ loadingPage, userList }, dispatchUser] = useUserContex();
-  const [{ darkmode }] = useStyledContex();
+  const [{ darkmode }, dispatch] = useStyledContex();
+
   const db = getFirestore(app);
   let list = [];
   async function getAllDataUser() {
@@ -32,6 +33,17 @@ const Main1 = () => {
     }
   }, []);
 
+  useEffect(() => {
+    const handleWindowResize = () => {
+      dispatch({ type: 'setWidth', payload: window.innerWidth });
+    };
+
+    window.addEventListener('resize', handleWindowResize);
+
+    return () => {
+      window.removeEventListener('resize', handleWindowResize);
+    };
+  });
   return (
     <Container color={darkmode ? 'true' : undefined}>
       {loadingPage ? (

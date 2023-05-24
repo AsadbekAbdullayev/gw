@@ -28,7 +28,8 @@ Wrapper.Wrap = styled.div`
 Wrapper.Flex = styled.div`
   display: flex;
   align-items: center;
-  width: fit-content;
+  justify-content: space-between;
+  width: 100%;
   gap: 5px;
   color: #fff;
   font-size: 16px;
