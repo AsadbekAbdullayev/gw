@@ -101,15 +101,6 @@ const FirstNavbar = () => {
     setLoading(false);
     handleCancel();
   }
-  // email: '',
-  // password: '',
-  // avatar: '',
-  // birthDay: '',
-  // createDate: today.toISOString(),
-  // id: idGenerate,
-  // nickName: '',
-  // position: 'user',
-  // games: [],
 
   async function handleOk() {
     if (state?.email && state?.password && state?.avatar && state?.nickName) {

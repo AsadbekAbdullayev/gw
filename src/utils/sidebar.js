@@ -53,4 +53,11 @@ export const sidebarData = [
     path: '/developers',
     component: <GameFor />,
   },
+  {
+    id: 9,
+    name: 'Home',
+    path: '/home',
+    component: <GameFor />,
+    hidden: true,
+  },
 ];
