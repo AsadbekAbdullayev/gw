@@ -2,7 +2,7 @@ import { styled } from 'styled-components';
 import myImage from '../../assets/img/user.png';
 
 export const Container = styled.div`
-  width: 270px;
+  width: 260px;
   /* height: 400px; */
   background-color: #39424f;
   position: absolute;
@@ -15,6 +15,8 @@ export const Container = styled.div`
   margin-left: auto;
   /* background-color: #39424f; */
   z-index: 100;
+  overflow-x: scroll;
+  padding: 20px 0px;
 `;
 
 Container.Menu = styled.div`
@@ -37,17 +39,17 @@ Container.Menu = styled.div`
 `;
 Container.Close = styled.div`
   color: yellowgreen;
-  font-size: 20px;
-  font-weight: 500;
+  font-size: 40px;
   position: absolute;
   transform: rotate(45deg);
-  border: 2px solid yellowgreen;
-  width: 20px;
-  height: 20px;
+  width: 25px;
+  height: 25px;
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 50%;
+  top: 110px;
+  right: 20px;
 `;
 Container.ImageUser = styled.div`
   width: 45px;
@@ -58,7 +60,7 @@ Container.ImageUser = styled.div`
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
-  margin: 50px 0 0 0;
+  margin: 85px 0 0 0;
 `;
 Container.Link = styled.div`
   color: #fff;
@@ -71,9 +73,12 @@ Container.Link = styled.div`
   }
 `;
 Container.Column = styled.div`
-  padding: 20px 0;
+  width: 270px;
   display: flex;
+  align-items: center;
   flex-direction: column;
-  gap: 20px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `;
 export const Wrapper = styled.div``;
