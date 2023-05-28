@@ -5,7 +5,7 @@ import { sidebarData } from '../../utils/sidebar';
 import { Modal } from 'antd';
 
 import { Container } from './style';
-const HideSidebar = ({ open }) => {
+const HideSidebar = ({ open, setOpen }) => {
   const [data, dispatchUser] = useUserContex();
   const { confirm } = Modal;
 
@@ -32,7 +32,7 @@ const HideSidebar = ({ open }) => {
   };
   return (
     <Container open={open ? 'true' : undefined}>
-      <Container.Close>+</Container.Close>
+      <Container.Close onClick={() => setOpen(!open)}>+</Container.Close>
       <Container.ImageUser url={data?.currentUser?.avatar} />
       <Container.Column style={{ gap: '0px' }}>
         {!data?.currentUser?.nickName ? (
@@ -66,7 +66,10 @@ const HideSidebar = ({ open }) => {
           !hidden && (
             <Container.Menu
               key={id}
-              onClick={() => Navigation(path)}
+              onClick={() => {
+                Navigation(path);
+                setOpen(false);
+              }}
               active={path === current ? 'true' : undefined}
               darkmode={darkmode === true ? 'true' : undefined}
             >

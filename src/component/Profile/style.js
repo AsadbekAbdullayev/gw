@@ -23,15 +23,33 @@ Wrapper.Image = styled.img`
   border-radius: 5px;
 `;
 Wrapper.Flex = styled.div`
-  width: fit-content;
+  width: 350px;
+  @media (max-width: 500px) {
+    width: 270px;
+  }
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
   display: flex;
+  word-wrap: break-word;
   gap: 10px;
   font-size: 20px;
   font-weight: 500;
   color: ${({ darkmode }) => (darkmode ? '#fff' : '#a4a4a4')};
 `;
 Wrapper.Column = styled.div`
-  width: fit-content;
+  @media (max-width: 1000px) {
+    width: 800px;
+  }
+  @media (max-width: 800px) {
+    width: 500px;
+  }
+  @media (max-width: 500px) {
+    width: 270px;
+  }
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
   display: flex;
   flex-direction: column;
   gap: 10px;
