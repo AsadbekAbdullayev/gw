@@ -1,6 +1,6 @@
 import { styled } from 'styled-components';
 export const Container = styled.div`
-  width: 270px;
+  width: 160px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -14,15 +14,14 @@ export const Container = styled.div`
   }
 `;
 Container.Menu = styled.div`
-  padding: 5px 20px;
-  width: 200px;
+  width: 142px;
   display: flex;
   align-items: center;
-  border-radius: 6px;
-  height: 28px;
+  border-radius: 5px;
   font-size: 16px;
   font-weight: 600;
-  color: ${({ active }) => (active ? '#fff27c' : '#fff')};
+  padding: 5px;
+  color: #fff;
   background-color: ${({ darkmode }) => (darkmode ? '#39424f' : '#86b64e')};
   cursor: pointer;
 `;

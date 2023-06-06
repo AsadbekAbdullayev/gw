@@ -1,11 +1,12 @@
 import { styled } from 'styled-components';
+
 import myImage from '../../assets/img/user.png';
 
 export const Container = styled.div`
   width: 260px;
   /* height: 400px; */
   background-color: #39424f;
-  position: absolute;
+  position: fixed;
   left: ${({ open }) => (open ? '0px' : '-270px')};
   transition: 0.3s ease;
   display: flex;
@@ -15,7 +16,6 @@ export const Container = styled.div`
   margin-left: auto;
   /* background-color: #39424f; */
   z-index: 100;
-  overflow-x: scroll;
   padding: 20px 0px;
 `;
 
