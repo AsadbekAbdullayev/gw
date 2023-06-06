@@ -33,19 +33,16 @@ const FirstNavbar = () => {
 
   const [messageApi, contextHolder] = message.useMessage();
   const { confirm } = Modal;
-  function getRandomInt(max) {
-    return Math.floor(Math.random() * max);
-  }
+
   const timeElapsed = Date.now();
   const today = new Date(timeElapsed);
-  let idGenerate = getRandomInt(10000);
   const [state, setState] = useState({
     email: '',
     password: '',
     avatar: '',
     birthDay: '',
     createDate: today.toISOString(),
-    id: idGenerate,
+    id: Math.floor(Math.random() * 10000),
     nickName: '',
     position: 'user',
     games: [],
@@ -62,7 +59,7 @@ const FirstNavbar = () => {
       avatar: '',
       birthDay: '',
       createDate: '',
-      id: 0,
+      id: Math.floor(Math.random() * 10000),
       nickName: '',
       position: 'user',
       games: [],

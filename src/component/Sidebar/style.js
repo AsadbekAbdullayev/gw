@@ -22,6 +22,6 @@ Container.Menu = styled.div`
   font-weight: 600;
   padding: 5px;
   color: #fff;
-  background-color: #39424f;
+  background-color: ${({ darkmode }) => (darkmode ? '#39424f' : '#86b64e')};
   cursor: pointer;
 `;
