@@ -1,6 +1,7 @@
 import Profile from '../component/Profile';
 import GameFor from '../component/GameFor';
 import News from '../component/News';
+import Creator from '../component/Creator';
 
 export const sidebarData = [
   {
@@ -54,10 +55,17 @@ export const sidebarData = [
     component: <GameFor />,
   },
   {
-    id: 9,
+    id: 10,
     name: 'Home',
     path: '/home',
     component: <GameFor />,
+    hidden: true,
+  },
+  {
+    id: 11,
+    name: 'Creator',
+    path: '/creator',
+    component: <Creator />,
     hidden: true,
   },
 ];

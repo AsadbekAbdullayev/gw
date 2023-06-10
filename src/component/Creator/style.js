@@ -1,13 +1,56 @@
 import styled from 'styled-components';
+import { Modal, DatePicker, Input } from 'antd';
 
-export const Container = styled.div`
-  width: 820px;
-  height: 100%;
-  @media (max-width: 1000px) {
-    width: 600px;
+export const AntModal = styled(Modal)`
+  .ant-modal-content {
+    /* background-color: ${({ darkmode }) =>
+      darkmode && '#39424f !important'}; */
   }
 `;
-Container.Flex = styled.div`
+export const AntDatePicker = styled(DatePicker)``;
+export const AntInput = styled(Input)``;
+
+export const Wrapper = styled.div`
+  @media (min-width: 1000px) {
+    width: 84%;
+  }
+  @media (min-width: 800px) {
+    width: 84%;
+  }
+  @media (max-width: 500px) {
+    width: 100%;
+  }
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  height: 100%;
+`;
+Wrapper.Image = styled.img`
+  width: 300px;
+  height: 300px;
+  border: 1px solid #a4a4a4;
+  border-radius: 5px;
+`;
+Wrapper.Flex = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+`;
+Wrapper.Column = styled.div`
+  width: 100%;
+  flex-direction: column;
+  word-wrap: break-word;
+  flex-wrap: wrap;
+  gap: 10px;
+  color: ${({ darkmode }) => (darkmode ? '#fff' : '#000')};
+`;
+Wrapper.Column1 = styled.div`
+  padding: 20px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+`;
+Wrapper.FlexCard = styled.div`
   display: flex;
   gap: 10px;
   flex-wrap: wrap;
