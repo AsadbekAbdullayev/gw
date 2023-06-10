@@ -2,4 +2,11 @@ import CloseButton from './closeButton';
 import { CustomLoading } from './customLoading';
 import GenericInput from './input';
 import GenericButton from './button';
-export { CloseButton, CustomLoading, GenericInput, GenericButton };
+import GenericLoading from './loading';
+export {
+  CloseButton,
+  CustomLoading,
+  GenericInput,
+  GenericButton,
+  GenericLoading,
+};

@@ -2,6 +2,8 @@ import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Main from '../component/Main';
 import { sidebarData } from '../utils/sidebar';
+import Creator from '../component/Creator';
+import GameView from '../component/GameView';
 const Root = () => {
   return (
     <Routes>
@@ -11,6 +13,8 @@ const Root = () => {
         })}
 
         <Route path='*' element={<h5>Not found</h5>} />
+        <Route path='/creators/:name' element={<Creator />} />
+        <Route path='/game/:name' element={<GameView />} />
       </Route>
     </Routes>
   );

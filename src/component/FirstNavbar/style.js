@@ -18,9 +18,9 @@ export const Wrapper = styled.div`
   background-color: #1e1e1e;
   justify-content: center;
   margin: 0 0 20px 0;
-  /* position: sticky; */
-  /* top: 0px; */
-  /* z-index: 99; */
+  position: sticky;
+  top: 0px;
+  z-index: 99;
 `;
 Wrapper.Wrap = styled.div`
   width: 1000px;

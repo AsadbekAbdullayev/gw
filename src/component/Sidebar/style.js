@@ -21,7 +21,8 @@ Container.Menu = styled.div`
   font-size: 16px;
   font-weight: 600;
   padding: 5px;
-  color: #fff;
+  color: ${({ active }) => (active ? '#EED944' : '#fff')};
+
   background-color: ${({ darkmode }) => (darkmode ? '#39424f' : '#86b64e')};
   cursor: pointer;
 `;
