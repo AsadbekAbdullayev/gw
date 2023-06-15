@@ -53,7 +53,6 @@ const Creator = () => {
     return htmlElements;
   }
   var htmlElement = convertToHTML(response?.description);
-  console.log(htmlElement, 'htmlElements');
   return (
     <Wrapper>
       {isLoading || isLoadingGames ? (

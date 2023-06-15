@@ -1,72 +1,11 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  @media (min-width: 1000px) {
-    width: 84%;
+  width: 820px;
+  height: 100%;
+  @media (max-width: 1000px) {
+    width: 600px;
   }
-  @media (min-width: 800px) {
-    width: 84%;
-  }
-  @media (max-width: 500px) {
-    width: 100%;
-  }
-
-  color: ${({ darkmode }) => (darkmode ? '#fff' : '#000')};
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-`;
-Container.Title = styled.div`
-  font-size: 30px;
-  font-weight: 500;
-  color: ${({ darkmode }) => (darkmode ? '#fff' : '#000')};
-`;
-Container.Media = styled.div`
-  width: 100%;
-`;
-
-Container.Line = styled.div`
-  width: 100%;
-  height: 1px;
-  border: 1px dashed ${({ darkmode }) => (darkmode ? '#2874ba' : '#86b64e')};
-`;
-Container.Wrapper = styled`
-width: 100%;
-border:1px solid red;
-`;
-Container.Desc = styled.div`
-  font-size: 16px;
-  font-weight: 500;
-  color: ${({ darkmode }) => (darkmode ? '#fff' : '#000')};
-  cursor: pointer;
-  &:hover {
-    text-decoration: dashed;
-    text-decoration: underline;
-    text-decoration-color: ${({ darkmode }) => (darkmode ? '#fff' : '#000')};
-  }
-`;
-
-Container.Link = styled.a`
-  font-size: 16px;
-  font-weight: 500;
-  color: ${({ darkmode }) => (darkmode ? '#fff' : '#000')};
-  cursor: pointer;
-  text-decoration: dashed;
-  text-decoration: underline;
-  text-decoration-color: ${({ darkmode }) => (darkmode ? '#fff' : '#000')};
-`;
-Container.Meta = styled.div`
-  width: 30px;
-  height: 30px;
-  border: 1px solid #6dc849;
-  color: #6dc849;
-  box-sizing: border-box;
-  font-weight: 700;
-  text-align: center;
-  border-radius: 4px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 `;
 Container.Flex = styled.div`
   display: flex;
@@ -127,4 +66,16 @@ Card.Title = styled.div`
   box-sizing: border-box;
   text-align: center;
   background-color: inherit;
+`;
+Container.Column = styled.div`
+  color: ${({ darkmode }) => (darkmode ? '#fff' : '#000')};
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+`;
+Container.Title = styled.div`
+  font-size: 30px;
+  font-weight: 500;
+  color: ${({ darkmode }) => (darkmode ? '#fff' : '#000')};
 `;
