@@ -50,9 +50,15 @@ const GameFor = () => {
     `https://api.rawg.io/api/${url}&key=c542e67aec3a4340908f9de9e86038af`
   );
 
-  const clickCard = (name, slug) => {
+  const clickCard = (name, slug, id) => {
     if (window?.location?.pathname === '/creators') {
       navigate(`/creators/:${slug}`);
+    } else if (window?.location?.pathname === '/platforms') {
+      navigate(`/platforms/:${id}`);
+    } else if (window?.location?.pathname === '/genres') {
+      navigate(`/genres/:${id}`);
+    } else {
+      navigate(`/game/:${slug}`);
     }
   };
   // test
@@ -67,7 +73,7 @@ const GameFor = () => {
               <Card
                 darkmode={darkmode === true ? 'true' : undefined}
                 key={id}
-                onClick={() => clickCard(name, slug)}
+                onClick={() => clickCard(name, slug, id)}
               >
                 <Card.Image
                   url={image || background_image || image_background}

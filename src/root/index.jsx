@@ -4,6 +4,9 @@ import Main from '../component/Main';
 import { sidebarData } from '../utils/sidebar';
 import Creator from '../component/Creator';
 import GameView from '../component/GameView';
+import Platforms from '../component/Platforms';
+import Genres from '../component/Genres';
+import Developer from '../component/Developer';
 const Root = () => {
   return (
     <Routes>
@@ -15,6 +18,9 @@ const Root = () => {
         <Route path='*' element={<h5>Not found</h5>} />
         <Route path='/creators/:name' element={<Creator />} />
         <Route path='/game/:name' element={<GameView />} />
+        <Route path='/platforms/:name' element={<Platforms />} />
+        <Route path='/genres/:name' element={<Genres />} />
+        <Route path='/developers/:name' element={<Developer />} />
       </Route>
     </Routes>
   );
