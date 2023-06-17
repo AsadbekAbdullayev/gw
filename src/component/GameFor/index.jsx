@@ -55,6 +55,8 @@ const GameFor = () => {
       navigate(`/creators/:${slug}`);
     } else if (window?.location?.pathname === '/platforms') {
       navigate(`/platforms/:${id}`);
+    } else if (window?.location?.pathname === '/developers') {
+      navigate(`/developers/:${id}`);
     } else if (window?.location?.pathname === '/genres') {
       navigate(`/genres/:${id}`);
     } else {

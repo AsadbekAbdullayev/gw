@@ -59,7 +59,7 @@ Wrapper.FlexCard = styled.div`
   }
 `;
 export const Card = styled.div`
-  width: 190px;
+  width: 165px;
   background-color: ${({ darkmode }) => (darkmode ? '#39424f' : '#86b64e')};
   display: flex;
   flex-direction: column;
