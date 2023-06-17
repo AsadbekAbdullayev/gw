@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Main from '../component/Main';
 import { sidebarData } from '../utils/sidebar';
@@ -8,6 +8,9 @@ import Platforms from '../component/Platforms';
 import Genres from '../component/Genres';
 import Developer from '../component/Developer';
 const Root = () => {
+  // useEffect(() => {
+  //   window.location.href = '/home';
+  // }, []);
   return (
     <Routes>
       <Route path='/' element={<Main />}>

@@ -68,6 +68,7 @@ Container.Meta = styled.div`
   align-items: center;
   justify-content: center;
 `;
+
 Container.Flex = styled.div`
   display: flex;
   gap: 10px;
@@ -77,7 +78,7 @@ Container.Flex = styled.div`
   }
 `;
 export const Card = styled.div`
-  width: 190px;
+  width: 165px;
   background-color: ${({ darkmode }) => (darkmode ? '#39424f' : '#86b64e')};
   display: flex;
   flex-direction: column;
