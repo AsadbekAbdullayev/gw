@@ -6,8 +6,9 @@ import Navbar from '../Navbar';
 import FirstNavbar from '../FirstNavbar';
 import SecondNavbar from '../SecondNavbar';
 import { useStyledContex, useUserContex } from '../../context/useContext';
+import { GenericLoading } from '../extra-component';
 
-const Main1 = () => {
+const Main = () => {
   const [{ loadingPage }] = useUserContex();
   const [{ darkmode }, dispatch] = useStyledContex();
 
@@ -43,7 +44,7 @@ const Main1 = () => {
   return (
     <Container color={darkmode ? 'true' : undefined}>
       {loadingPage ? (
-        <h3>Loading data ..</h3>
+        <GenericLoading />
       ) : (
         <Container color={darkmode ? 'true' : undefined}>
           <FirstNavbar />
@@ -59,4 +60,4 @@ const Main1 = () => {
   );
 };
 
-export default Main1;
+export default Main;

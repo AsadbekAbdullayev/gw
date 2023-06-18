@@ -1,14 +1,12 @@
 import React from 'react';
 import { Wrapper } from './style';
 import Atropos from 'atropos/react';
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 
 const SecondNavbar = () => {
-  const navigate = useNavigate();
-
   return (
     <Wrapper>
-      <Wrapper.Flex onClick={() => navigate('/')}>
+      <Wrapper.Flex>
         <Atropos className='my-atropos' shadowScale={0} duration={70}>
           <Wrapper.Wrap>
             <Wrapper.Title>Game </Wrapper.Title>

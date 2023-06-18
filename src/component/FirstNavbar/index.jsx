@@ -329,23 +329,8 @@ const FirstNavbar = () => {
 
       <Wrapper.Wrap>
         <Wrapper.Flex style={{ gap: '20px' }}>
-          <Wrapper.Link onClick={() => navigate('/home')}>Home</Wrapper.Link>
-          <Wrapper.Link onClick={() => navigate('/news')}>News</Wrapper.Link>
-          <Wrapper.Link onClick={goProfile}>Profile</Wrapper.Link>
-        </Wrapper.Flex>
-        <Wrapper.Flex style={{ gap: '20px' }}>
-          <Wrapper.Image
-            onClick={() =>
-              dispatch({ type: 'setDarkmode', payload: !darkmode })
-            }
-            src={
-              !darkmode
-                ? 'https://itorrents-igruha.org/templates/gamestorgreen/images/sunny.png'
-                : 'https://itorrents-igruha.org/templates/gamestorgreen/images/moon.png'
-            }
-          />
           {widht1 > 500 && (
-            <Wrapper.Column style={{ gap: '0px' }}>
+            <Wrapper.Flex style={{ gap: '20px' }}>
               {!data?.currentUser?.nickName ? (
                 <>
                   <Wrapper.Link
@@ -371,12 +356,24 @@ const FirstNavbar = () => {
                   </Wrapper.Link>
                 </>
               )}
-            </Wrapper.Column>
+            </Wrapper.Flex>
           )}
-
+        </Wrapper.Flex>
+        <Wrapper.Flex style={{ gap: '20px' }}>
+          <Wrapper.Link onClick={goProfile}>Profile</Wrapper.Link>
           {widht1 > 500 && (
             <Wrapper.ImageUser url={data?.currentUser?.avatar} />
           )}
+          <Wrapper.Image
+            onClick={() =>
+              dispatch({ type: 'setDarkmode', payload: !darkmode })
+            }
+            src={
+              !darkmode
+                ? 'https://itorrents-igruha.org/templates/gamestorgreen/images/sunny.png'
+                : 'https://itorrents-igruha.org/templates/gamestorgreen/images/moon.png'
+            }
+          />
         </Wrapper.Flex>
       </Wrapper.Wrap>
     </Wrapper>

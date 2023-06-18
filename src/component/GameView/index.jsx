@@ -5,6 +5,8 @@ import { useRequest } from '../../hooks';
 import { GenericLoading } from '../extra-component';
 import { useStyledContex } from '../../context/useContext';
 import FbImageLibrary from 'react-fb-image-grid';
+import Lightbox from 'react-18-image-lightbox';
+import 'react-18-image-lightbox/style.css';
 import ReactPlayer from 'react-player';
 import { useNavigate } from 'react-router-dom';
 
@@ -13,7 +15,13 @@ const GameFor = () => {
   let { name } = useParams();
   const [images, setImages] = useState([]);
   const navigate = useNavigate();
+  const [isOpen, setIsOpen] = useState(false);
+  const [photoIndex, setPhotoIndex] = useState(0);
 
+  const openLightbox = (index) => {
+    setIsOpen(true);
+    setPhotoIndex(index);
+  };
   const { response, isLoading } = useRequest(
     'GET',
     `https://api.rawg.io/api/games/${name?.slice(
@@ -69,13 +77,29 @@ const GameFor = () => {
   const clickCard = (name, slug, id) => {
     navigate(`/game/:${slug}`);
   };
-
   return (
     <Container>
       {isLoading || isLoadingImages || isLoadingSugges ? (
         <GenericLoading />
       ) : (
         <Container darkmode={darkmode === true ? 'true' : undefined}>
+          {isOpen && images?.length ? (
+            <Lightbox
+              mainSrc={images[photoIndex] && `${images[photoIndex]}`}
+              nextSrc={images[(photoIndex + 1) % images.length]}
+              prevSrc={images[(photoIndex + images.length - 1) % images.length]}
+              onCloseRequest={() => setIsOpen(false)}
+              onMovePrevRequest={() =>
+                setPhotoIndex((photoIndex + images.length - 1) % images.length)
+              }
+              onMoveNextRequest={() =>
+                setPhotoIndex((photoIndex + 1) % images.length)
+              }
+            />
+          ) : (
+            ''
+          )}
+
           <Container.Title darkmode={darkmode === true ? 'true' : undefined}>
             {response?.name}
           </Container.Title>
@@ -94,7 +118,9 @@ const GameFor = () => {
               images={images}
               width={10}
               countFrom={4}
-              showCaption={true}
+              onClickEach={({ src, index }) => {
+                openLightbox(index);
+              }}
             />
           )}
           {htmlElement.map((element, index) => (

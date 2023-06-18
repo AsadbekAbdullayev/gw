@@ -20,7 +20,9 @@ const GameFor = () => {
       ? 'creators?page_size=40'
       : window?.location?.pathname === '/genres'
       ? 'genres?page_size=40'
-      : 'developers?page_size=40'
+      : window?.location?.pathname === '/developers'
+      ? 'developers?page_size=40'
+      : 'games/lists/recent-games-past?discover=true&ordering=-added&page_size=40&page=1'
   );
 
   useEffect(
@@ -36,15 +38,13 @@ const GameFor = () => {
           ? 'creators?page_size=40'
           : window?.location?.pathname === '/genres'
           ? 'genres?page_size=40'
-          : 'developers?page_size=40'
+          : window?.location?.pathname === '/developers'
+          ? 'developers?page_size=40'
+          : 'games/lists/recent-games-past?discover=true&ordering=-added&page_size=40&page=1'
       ),
     [window?.location?.pathname]
   );
-  /* {window?.location?.pathname?.slice(1)} ====> url*/
-  // https://rawg.io/api/games/evil-tonight/screenshots?page=1&page_size=12&with_deleted=false&key=c542e67aec3a4340908f9de9e86038af  ==>screenshotlar
-  // https://rawg.io/api/games/evil-tonight?key=c542e67aec3a4340908f9de9e86038af ===> shu uyin haqida umumiy malumot
-  // https://rawg.io/api/games/evil-tonight/suggested?page=1&page_size=8&key=c542e67aec3a4340908f9de9e86038af  ====> shunga uxshagan uyinlar
-  // https://rawg.io/api/games/evil-tonight/achievements?page=1&page_size=12&key=c542e67aec3a4340908f9de9e86038af buni bilmadim lekin kerak bulib qolar
+  // https://rawg.io/api/games/lists/recent-games?discover=true&ordering=-added&page_size=20&page=1&key=c542e67aec3a4340908f9de9e86038af
   const { response, isLoading } = useRequest(
     'GET',
     `https://api.rawg.io/api/${url}&key=c542e67aec3a4340908f9de9e86038af`

@@ -5,6 +5,13 @@ import Creator from '../component/Creator';
 
 export const sidebarData = [
   {
+    id: 101,
+    name: '',
+    path: '/',
+    component: <GameFor />,
+    hidden: true,
+  },
+  {
     id: 1,
     name: 'Profile',
     path: '/profile',

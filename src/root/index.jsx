@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Main from '../component/Main';
 import { sidebarData } from '../utils/sidebar';
@@ -7,10 +7,8 @@ import GameView from '../component/GameView';
 import Platforms from '../component/Platforms';
 import Genres from '../component/Genres';
 import Developer from '../component/Developer';
+import Search from '../component/Search';
 const Root = () => {
-  // useEffect(() => {
-  //   window.location.href = '/home';
-  // }, []);
   return (
     <Routes>
       <Route path='/' element={<Main />}>
@@ -24,6 +22,7 @@ const Root = () => {
         <Route path='/platforms/:name' element={<Platforms />} />
         <Route path='/genres/:name' element={<Genres />} />
         <Route path='/developers/:name' element={<Developer />} />
+        <Route path='/search/:name' element={<Search />} />
       </Route>
     </Routes>
   );

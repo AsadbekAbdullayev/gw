@@ -6,7 +6,6 @@ import Root from './root';
 import { BrowserRouter } from 'react-router-dom';
 import MainContextProvider from './context';
 import { QueryClient, QueryClientProvider } from 'react-query';
-
 import 'atropos/css';
 const queryClient = new QueryClient({
   defaultOptions: {
