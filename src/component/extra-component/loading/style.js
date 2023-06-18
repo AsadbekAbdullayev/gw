@@ -51,8 +51,8 @@ export const Li = styled.li`
     box-shadow: inset 0px 0px 30px rgba(0, 0, 0, 1);
   }
   &:first-child {
-    margin-left: -130px;
-    margin-top: -130px;
+    margin-left: -122px;
+    margin-top: -122px;
     z-index: 2;
     width: 240px;
     height: 240px;
