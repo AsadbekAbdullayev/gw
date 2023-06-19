@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Wrapper } from './style';
 import { IconSearch } from '../../styledIcons';
-const GenericInput = ({ onChange, value }) => {
+const GenericInput = ({ onChange, value, onKeyDown, onClickSearch }) => {
   const [blur, setBlur] = useState(false);
   const onFocus = () => {
     setBlur(true);
@@ -16,11 +16,18 @@ const GenericInput = ({ onChange, value }) => {
         value={value}
         onFocus={onFocus}
         onBlur={onBlur}
+        onKeyDown={onKeyDown}
         placeholder='Search..'
       />
-      {blur && (
-        <IconSearch margin={'0 10px 0 0'} style={{ cursor: 'pointer' }} />
-      )}
+      <IconSearch
+        margin={'0 10px 0 0'}
+        style={{ cursor: 'pointer' }}
+        onClick={(e) => {
+          setBlur(true);
+          e.stopPropagation();
+          onClickSearch();
+        }}
+      />
     </Wrapper>
   );
 };
