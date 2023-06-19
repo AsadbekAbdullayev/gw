@@ -3,6 +3,7 @@ import { Wrapper, Card } from './style';
 import { useStyledContex } from '../../context/useContext';
 import { useParams } from 'react-router-dom';
 import { useRequest } from '../../hooks';
+import { useNavigate } from 'react-router-dom';
 
 import { GenericLoading } from '../extra-component';
 // https://rawg.io/api/games?creators=gabe-newell&ordering=-released&comments=true&ordering=-added&page_size=20&page=1&key=c542e67aec3a4340908f9de9e86038af
@@ -10,6 +11,8 @@ import { GenericLoading } from '../extra-component';
 const Creator = () => {
   const [{ darkmode }] = useStyledContex();
   let { name } = useParams();
+  const navigate = useNavigate();
+
   const { response, isLoading } = useRequest(
     'GET',
     `https://api.rawg.io/api/creators/${name?.slice(
@@ -24,10 +27,9 @@ const Creator = () => {
     )}&ordering=-released&key=c542e67aec3a4340908f9de9e86038af`
   );
 
-  // function removeTags(str) {
-  //   var regex = /<\/?([a-z][a-z0-9]*)\b[^>]*>/gi;
-  //   return str.replace(regex, '');
-  // }
+  const clickCard = (name, slug) => {
+    navigate(`/game/:${slug}`);
+  };
 
   function convertToHTML(htmlString) {
     var tempElement = document.createElement('div');
@@ -84,7 +86,7 @@ const Creator = () => {
                   <Card
                     darkmode={darkmode === true ? 'true' : undefined}
                     key={id}
-                    // onClick={() => clickCard(name, slug)}
+                    onClick={() => clickCard(name, slug)}
                   >
                     <Card.Image
                       url={image || background_image || image_background}

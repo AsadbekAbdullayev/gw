@@ -18,8 +18,12 @@ const Search = () => {
     )}&page_size=20&page=1&key=c542e67aec3a4340908f9de9e86038af`
   );
 
-  const clickCard = (name, slug, id) => {
-    navigate(`/game/:${slug}`);
+  const clickCard = (name, slug, instance) => {
+    if (instance === 'game') {
+      navigate(`/game/:${slug}`);
+    } else if (instance === 'person') {
+      navigate(`/creators/:${slug}`);
+    }
   };
   return (
     <Wrapper>
@@ -37,11 +41,12 @@ const Search = () => {
                   name,
                   image,
                   slug,
+                  instance,
                 }) => (
                   <Card
                     darkmode={darkmode === true ? 'true' : undefined}
                     key={id}
-                    onClick={() => clickCard(name, slug)}
+                    onClick={() => clickCard(name, slug, instance)}
                   >
                     <Card.Image
                       url={image || background_image || image_background}

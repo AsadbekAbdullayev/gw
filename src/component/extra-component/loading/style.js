@@ -9,7 +9,7 @@ export const Ul = styled.ul`
 export const Li = styled.li`
   position: absolute;
   left: 50%;
-  top: 50%;
+  top: 370px;
   display: block;
   background: transparent;
   border: 10px solid
@@ -22,7 +22,7 @@ export const Li = styled.li`
   &:last-child {
     position: absolute;
     left: 50%;
-    top: 50%;
+    top: 370px;
     z-index: 20;
     width: 200px;
     height: 100px;
